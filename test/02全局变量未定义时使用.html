@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02全局变量未定义时使用</title>
+    <script>
+        (function () {
+            //如果window中不包含gis呢？
+            var gis = window['gis'] || {};
+            console.log(gis);
+            console.log(gis.business);
+            console.log(window.hehe.cc);
+        })();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01全局变量</title>
+    <script>
+        window.a = 1;
+        window.b = {
+            x: 5,
+            y: 6
+        };
+
+        //下述方式效果一样
+        //那下述有什么区别？
+        console.log(window['a']);
+        console.log(window.a);
+
+        console.log(window['b']);
+        console.log(window.b);
+
+        //看来是传值的，不会改变原始的值！
+        (function () {
+            var c = window.a;
+            c = "changed";
+            console.log(window.a);
+        })();
+
+    </script>
+</head>
+<body>
+我想知道通过window['name']的方式拿到的全局变量
+变量本身是传值还是传引用？
+</body>
+</html>
