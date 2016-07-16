@@ -23,7 +23,7 @@
                 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
                 mymap.on("mousedown", function (e) {
                     if ($('#MousePositionShowSwitch').attr('flag') == 'true') {
-                        console.log(e.latlng);
+                        console.log(e.latlng.lat + "," + e.latlng.lng);
                     }
                 });
                 container.mymap = mymap;
@@ -98,6 +98,6 @@
 
 <!--
 怎么使得circle可以移动？draggable
-
+改进：其中一个button是“开关控件”，那么在显示上，是否就应该you按下、弹起2种状态？
 
 -->
