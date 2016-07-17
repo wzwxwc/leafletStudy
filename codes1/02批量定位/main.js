@@ -16,7 +16,18 @@ window.onload = function () {
     });
     $("#LINESTRING").click(function () {
         zoomToLINESTRING();
-    })
+    });
+
+    $("#btn3").click(function () {
+        var arrLatLng = [
+            [51.49869827721546, -0.19002914428710938],
+            [51.51301590715673, -0.1560401916503906],
+            [51.50810140697543, -0.12805938720703125]
+        ];
+        L.polyline(arrLatLng, {
+            color: "red"
+        }).addTo(mymap);
+    });
 };
 
 /**

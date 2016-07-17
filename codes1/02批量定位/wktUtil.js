@@ -24,7 +24,7 @@ wktUtil.getPointArrayFromMULTIPOINT = function (strWkt) {
 wktUtil.getPointArrayFromLINESTRING = function (strWkt) {
     //输入strWkt： LINESTRING(3 4,10 50,20 25)
     //输出arrPoints: [[3,4],[10,50],[20,25]]
-    var arrPoints = new Array();
+    var arrPoints = [];
     var strPoints = strWkt.substring(strWkt.indexOf('(') + 1, strWkt.indexOf(')'));
     var arrXYs = strPoints.split(',');
     for (var i = 0; i < arrXYs.length; i++) {
@@ -32,7 +32,9 @@ wktUtil.getPointArrayFromLINESTRING = function (strWkt) {
         var pointLeaflet = [point[1], point[0]];
         arrPoints.push(pointLeaflet);
     }
-    L.polyline(arrPoints);
+    L.polyline(arrPoints, {
+        color: "red"
+    }).addTo(mymap);
     return arrPoints;
 };
 
