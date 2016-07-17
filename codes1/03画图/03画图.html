@@ -34,11 +34,13 @@
             }
 
             //画线
-            L.polyline(arrLatLng, {
-                color: "red"
-            }).addTo(mymap);
+//            L.polyline(arrLatLng, {
+//                color: "red"
+//            }).addTo(mymap);
 
             //画面
+            //是否应该收尾衔接？
+            arrLatLng.push([51.50938350161162, -0.1922607421875]);
             L.polygon(arrLatLng).addTo(mymap);
 
             document.getElementById('zoom').onclick = function () {
