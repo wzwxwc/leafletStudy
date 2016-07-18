@@ -18,22 +18,13 @@ define([], function () {
     wktUtil.getLatLngArrFromMULTIPOINT = function (strWkt) {
         //输入strWkt： MULTIPOINT(3.5 5.6, 4.8 10.5)
         //输出arrPoints: [[3.5,5.6],[4.8,10.5]]
-        var arrPoints = new Array();
-        var strPoints = strWkt.substring(strWkt.indexOf('(') + 1, strWkt.indexOf(')'));
-
-        var arrXYs = strPoints.split(',');
-        for (var i = 0; i < arrXYs.length; i++) {
-            var point = arrXYs[i].split(' ');
-            var pointLeaflet = [point[1], point[0]];
-            arrPoints.push(pointLeaflet);
-        }
-        return arrPoints;
+        var strPoints = strWkt.substring(strWkt.indexOf('('), strWkt.indexOf(')') + 1);
+        return this.fnDealWithCell(strPoints);
     };
 
     wktUtil.getLatLngArrFromLINESTRING = function (strWkt) {
         //输入strWkt： LINESTRING(3 4,10 50,20 25)
         //输出arrPoints: [[3,4],[10,50],[20,25]]
-        var arrPoints = [];
         var strPoints = strWkt.substring(strWkt.indexOf('('), strWkt.indexOf(')') + 1);
         return this.fnDealWithCell(strPoints);
     };
@@ -89,10 +80,10 @@ define([], function () {
 
     /**
      * 处理最小的“字符串单元”
-     //输入(3 4,10 50,20 25)
-     //输出[[3,4],[10,50],[20,25]]
      */
     wktUtil.fnDealWithCell = function (cell) {
+        //输入(3 4,10 50,20 25)
+        //输出[[3,4],[10,50],[20,25]]
         var results = [];
         var strPoints = cell.substring(cell.indexOf('(') + 1, cell.indexOf(')'));
         var arrXYs = strPoints.split(',');
