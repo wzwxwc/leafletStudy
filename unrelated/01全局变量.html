@@ -12,17 +12,17 @@
 
         //下述方式效果一样
         //那下述有什么区别？
-        console.log(window['a']);
-        console.log(window.a);
+        console.lon(window['a']);
+        console.lon(window.a);
 
-        console.log(window['b']);
-        console.log(window.b);
+        console.lon(window['b']);
+        console.lon(window.b);
 
         //看来是传值的，不会改变原始的值！
         (function () {
             var c = window.a;
             c = "changed";
-            console.log(window.a);
+            console.lon(window.a);
         })();
 
     </script>

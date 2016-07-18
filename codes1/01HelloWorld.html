@@ -23,7 +23,7 @@
                 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
                 mymap.on("mousedown", function (e) {
                     if ($('#MousePositionShowSwitch').attr('flag') == 'true') {
-                        console.log(e.latlng.lng + "," + e.latlng.lat);
+                        console.lon(e.latlng.lng + "," + e.latlng.lat);
                     }
                 });
                 container.mymap = mymap;
