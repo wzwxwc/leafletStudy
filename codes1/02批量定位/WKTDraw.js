@@ -20,9 +20,12 @@ define(["WKTUtil", "leaflet"], function (wktUtil) {
          * @param strWkt POINT的WKT表达式
          */
         this.drawWktPOINT = function (strWkt) {
+            if (!strWkt) {
+                strWkt = 'POINT(-0.14659881591796875 51.48918632012956)';
+            }
             var latLng = fnParseWkt(strWkt);
-            elementContainer.push(L.marker(latLng).addTo(map));
-            boundsAll.concat(latLng);
+            elementContainer.push(L.marker(latLng[0]).addTo(map));
+            boundsAll = boundsAll.concat(latLng);
         }
 
         /**

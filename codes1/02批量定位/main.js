@@ -27,7 +27,9 @@ require(["WKTDraw", "CustomDraw", "jquery", "leaflet"], function (WKTDraw, Custo
     });
 
     var wktDraw = new WKTDraw(mymap);
-
+    $("#POINT").click(function () {
+        wktDraw.drawWktPOINT();
+    });
     $("#MULTIPOINT").click(function () {
         wktDraw.drawWktMULTIPOINT();
     });

@@ -7,12 +7,13 @@ define([], function () {
     wktUtil.getLatLngFromPOINT = function (strWkt) {
         //输入strWkt  POINT(6 10)
         //输出point   [10,6]
-        var pointLeaflet = [];
-        var strPoint = strWkt.substring(strWkt.indexOf('(') + 1, strWkt.indexOf(')'));
-        var arrXY = strPoint.split(' ');
-        pointLeaflet.push(parseFloat(arrXY[1]));
-        pointLeaflet.push(parseFloat(arrXY[0]));
-        return pointLeaflet;
+        // var pointLeaflet = [];
+        var strPoint = strWkt.substring(strWkt.indexOf('('), strWkt.indexOf(')')+1);
+        return this.fnDealWithCell(strPoint);
+        // var arrXY = strPoint.split(' ');
+        // pointLeaflet.push(parseFloat(arrXY[1]));
+        // pointLeaflet.push(parseFloat(arrXY[0]));
+        // return pointLeaflet;
     };
 
     wktUtil.getLatLngArrFromMULTIPOINT = function (strWkt) {
