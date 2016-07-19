@@ -27,6 +27,7 @@ require(["WKTDraw", "CustomDraw", "jquery", "leaflet"], function (WKTDraw, Custo
     });
 
     var wktDraw = new WKTDraw(mymap);
+    var customDraw = new CustomDraw(mymap);
     $("#POINT").click(function () {
         wktDraw.drawWktPOINT();
     });
@@ -44,6 +45,7 @@ require(["WKTDraw", "CustomDraw", "jquery", "leaflet"], function (WKTDraw, Custo
     });
     $("#btnClear").click(function () {
         wktDraw.clear();
+        customDraw.clear();
     });
 
 //外部接口调用
@@ -62,8 +64,7 @@ require(["WKTDraw", "CustomDraw", "jquery", "leaflet"], function (WKTDraw, Custo
             iconurl: iconurl,
             level: level
         };
-        var customeDraw = new CustomDraw(mymap);
-        customeDraw.draw(jsonArguments);
+        customDraw.draw(jsonArguments);
     }
 
 

@@ -8,7 +8,7 @@ define(["WKTDraw"], function (WKTDraw) {
             console.error("没有传入地图对象，无法继续执行！")
             return;
         }
-        var wkrDraw = new WKTDraw(map);
+        var wktDraw = new WKTDraw(map);
         this.draw = function (jsonArguments) {
             var recordList = fnDealWithValueField(jsonArguments.value);
             for (var recordid in recordList) {
@@ -25,7 +25,6 @@ define(["WKTDraw"], function (WKTDraw) {
                 }
             }
         }
-
 
         function fnDealWithValueField(value) {
             /*
@@ -82,17 +81,21 @@ define(["WKTDraw"], function (WKTDraw) {
         function fnDrawWkt(record) {
             switch (record.geotype) {
                 case "1":
-                    wkrDraw.drawWktPOINT(record.wkt);
+                    wktDraw.drawWktPOINT(record.wkt);
                     break;
                 case "2":
-                    wkrDraw.drawWktLINESTRING(record.wkt);
+                    wktDraw.drawWktLINESTRING(record.wkt);
                     break;
                 case "3":
-                    wkrDraw.drawWktPOLYGON(record.wkt);
+                    wktDraw.drawWktPOLYGON(record.wkt);
                     break;
                 default:
                     break;
             }
+        }
+
+        this.clear = function () {
+            wktDraw.clear();
         }
 
     };
