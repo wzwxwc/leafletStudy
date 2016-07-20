@@ -32,10 +32,15 @@
             L.marker([51.50393435023761, -0.09767532348632812], {
                 icon: myIcon
             }).addTo(mymap);
+
+            document.getElementById("zoomto").onclick = function () {
+                
+            }
         }
     </script>
 </head>
 <body>
+<button id="zoomto">缩放到某点</button>
 <div id="divMap" style="width：500px;height: 300px;"></div>
 </body>
 </html>
