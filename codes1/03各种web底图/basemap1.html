@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basemap1</title>
+    <link rel="stylesheet" href="../../deps/v0.7.7/leaflet.css">
+    <style>
+        #map {
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+    <script src="../../deps/v0.7.7/leaflet-src.js"></script>
+    <script>
+        window.onload = function () {
+            var layer = L.tileLayer('https://vector.mapzen.com/osm/{layers}/{z}/{x}/{y}.{format}?api_key=vector-tiles-xxxxxxx', {attribution: '<a href="https://www.mapzen.com/rights">Attribution.</a>. Data &copy;<a href="https://openstreetmap.org/copyright">OSM</a> contributors.'});
+            var map = L.map('map', {scrollWheelZoom: false, center: [40.7127837, -74.0059413], zoom: 6});
+            map.addLayer(layer);
+        }
+    </script>
+</head>
+<body>
+<div id="map"></div>
+</body>
+</html>
