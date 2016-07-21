@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a打印地图</title>
+    <link rel="stylesheet" href="../../deps/v0.7.7/leaflet.css">
+    <style>
+        #divMap {
+            width: 1000px;
+            height: 400px;
+            border: 2px solid gold;
+        }
+    </style>
+    <script src="../../deps/v0.7.7/leaflet-src.js"></script>
+    <script src="../../deps/html2canvas/html2canvas.js"></script>
+    <script>
+        var mymap = null;
+        window.onload = function () {
+            mymap = L.map('divMap').setView([51.505, -0.09], 13);
+
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                id: 'mapbox.streets'
+            }).addTo(mymap);
+
+            var arrLatLng = [[51.50938350161162, -0.1922607421875], [51.51216124955517, -0.15895843505859375], [51.50329323076107, -0.1517486572265625]];
+
+            //画点
+            for (var i = 0; i < arrLatLng.length; i++) {
+                var latLng = arrLatLng[i];
+                L.marker(latLng).addTo(mymap);
+            }
+
+            //画线
+            L.polyline(arrLatLng, {
+                color: "red"
+            }).addTo(mymap);
+
+            //画面
+            //是否应该收尾衔接？
+            arrLatLng.push([51.50938350161162, -0.1922607421875]);
+            L.polygon(arrLatLng).addTo(mymap);
+
+            document.getElementById('btnPrint').onclick = function () {
+                html2canvas(document.getElementById("divMap")).then(function (canvas) {
+                    document.body.appendChild(canvas);
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="divMap"></div>
+<button id="btnPrint">打印</button>
+</body>
+</html>
