@@ -3,7 +3,7 @@
  */
 var mymap = null;
 var circle = null;
-var marker = null;
+var markerHandle = null;
 var disicon = null;
 
 window.onload = function () {
@@ -56,34 +56,41 @@ window.onload = function () {
     disicon = L.divIcon({
         html: htmlTemplate
     });
-    marker = L.marker([0, 0], {
+    markerHandle = L.marker([0, 0], {
         icon: disicon,
         draggable: true
     });
 
-    marker.on("drag", function () {
-        debugger
+    markerHandle.on("drag", function () {
+        // debugger
         var distance = this.getLatLng().distanceTo(centrePoint);
         var newHtml = htmlTemplate.replace("@@", distance);
         disicon.options.html = newHtml;
-        marker.setIcon(disicon);
+        markerHandle.setIcon(disicon);
         circle.setRadius(distance);
         // circle.update();
     });
 
     circle.on('dblclick', function () {
-        console.log("触发了circel的mouseover    dblclick事件")
+        debugger
+        console.log("触发了circel的mouseover    dblclick事件");
+        if (this._user_handle) {
+            this._user_handle = false;
+            mymap.removeLayer(markerHandle);
+            return;
+        }
         // debugger
         var latLngCircleCenter = this.getLatLng();
         var offset = this.getRadius();
         var latLngOffset = fnGetDestinationLatLng(latLngCircleCenter, 90, offset);
         //最好是设置为圆心往右偏半径的距离
-        marker.setLatLng(latLngOffset);
+        markerHandle.setLatLng(latLngOffset);
         var newHtml = htmlTemplate.replace("@@", offset);
         disicon.options.html = newHtml;
-        marker.setIcon(disicon);
-        marker.update();
-        marker.addTo(mymap);
+        markerHandle.setIcon(disicon);
+        markerHandle.update();
+        markerHandle.addTo(mymap);
+        this._user_handle = true;
         // mymap.setView(latLngOffset);
     });
 
