@@ -4,8 +4,7 @@
 
 require.config({
     paths: {
-        leaflet: "../../deps/v0.7.7/leaflet-src.js",
-        jquery: "../../deps/jquery.js"
+        leaflet: "../../deps/v0.7.7/leaflet-src"
     }
 });
 define(["leaflet"], function () {
@@ -30,27 +29,69 @@ define(["leaflet"], function () {
         return new L.latLng(lat2 * 180 / Math.PI, lon2 * 180 / Math.PI);
     }
 
-    var temp = function (map, circle) {
+    /**
+     * 参数有效性检查
+     */
+    function fnCheckArgumentsValidation(map, circleCenterLatLng, radius) {
+        if (map && circleCenterLatLng && radius) {
+            return true;
+        } else {
+            console.error("传入的参数含有空值");
+            return false;
+        }
+        if (circleCenterLatLng.length != 2 || isNaN(circleCenterLatLng[0]) || isNaN(circleCenterLatLng[1])) {
+            console.error("centerPoint参数不满足要求");
+            return false;
+        }
+        if (isNaN(radius)) {
+            console.log("radius必须是数字");
+            return false;
+        }
+        return true;
+    }
+
+    var temp = function (map, circleCenterLatLng, radius) {
         var htmlTemplate = '<img style="width:20px;height: 20px;border:4px solid greenyellow" src="imgs/handle.jpeg" alt=""><input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
         var disicon = L.divIcon({
             html: htmlTemplate
         });
-        var markerHandle = L.marker([0, 0], {
+
+        //在使用之前，要不要对centerPoint和radius进行校验？
+        //校验该放在哪里进行？
+        if (!fnCheckArgumentsValidation(map, circleCenterLatLng, radius)) {
+            return;
+        }
+        var circle = L.circle(circleCenterLatLng, radius).addTo(map);
+
+        var latLngHandle = fnGetDestinationLatLng(L.latLng(circleCenterLatLng[0], circleCenterLatLng[1]), 90, radius);
+        var newHtml = htmlTemplate.replace("@@", radius);
+        disicon.options.html = newHtml;
+        var markerHandle = L.marker(latLngHandle, {
             icon: disicon,
             draggable: true
-        });
+        }).addTo(map);
         markerHandle.on("drag", function () {
             // debugger
-            var distance = this.getLatLng().distanceTo(centrePoint);
+            var distance = this.getLatLng().distanceTo(circleCenterLatLng);
             var newHtml = htmlTemplate.replace("@@", distance);
             disicon.options.html = newHtml;
             markerHandle.setIcon(disicon);
             circle.setRadius(distance);
             // circle.update();
         });
+        //为什么没有mouseup事件？不过下述事件也不错
+        markerHandle.on("dragend", function () {
+            map.fitBounds(circle);
+        })
+        //如果能够再缩放几个级别就好了
+        map.fitBounds(circle);
+        // map.zoomOut(1);
 
-        circle.on('dblclick', function () {
-            debugger
+        // circle.on('dblclick', fnCircleDbclickHandler);
+        /**
+         * 圆的双击事件，控制handle的显示与隐藏——未使用
+         */
+        function fnCircleDbclickHandler() {
             console.log("触发了circel的mouseover    dblclick事件");
             if (this._user_handle) {
                 this._user_handle = false;
@@ -70,75 +111,13 @@ define(["leaflet"], function () {
             markerHandle.addTo(map);
             this._user_handle = true;
             // mymap.setView(latLngOffset);
-        });
-
-        circle.on("mouseout", function () {
-            console.log("触发了circel的mouseout     out事件")
-        })
+        }
 
     };
     return temp;
 
 
 });
-
-
-// map = L.map('divMap').setView([51.505, -0.09], 13);
-
-// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
-//     maxZoom: 18,
-//     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-//     '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-//     'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-//     id: 'mapbox.streets'
-// }).addTo(map);
-//
-// map.on("mousedown", function (e) {
-//     console.log(e.latlng.lng + "," + e.latlng.lat);
-// });
-
-
-//画圆
-//半径单位是米？a radius in meters
-// var centrePoint = [51.5089561407416, -0.10419845581054688]; //圆心
-// circle = L.circle(centrePoint, 1000).addTo(map);
-
-// disicon = L.divIcon({
-//     html: htmlTemplate
-// });
-// markerHandle = L.marker([0, 0], {
-//     icon: disicon,
-//     draggable: true
-// });
-
-// markerHandle.on("drag", function () {
-//     // debugger
-//     var distance = this.getLatLng().distanceTo(centrePoint);
-//     var newHtml = htmlTemplate.replace("@@", distance);
-//     disicon.options.html = newHtml;
-//     markerHandle.setIcon(disicon);
-//     circle.setRadius(distance);
-//     // circle.update();
-// });
-
-
-// L.DomEvent.addListener(circle, 'mouseenter', function (e) {
-//     //在调试的时候，设置断点，为什么进不来？
-//     //在chrome中，可以看到，额外的生成了一些js文件
-//在实际使用的时候，可能只是拿到了这个function对象，把copy给了另一个人来用而已！
-//     var marker = L.marker([51.5089561407416, -0.10419845581054688]).addTo(mymap);
-// });
-
-
-//改变半径
-// function fnChangeRadius() {
-//     var oldR = this.getRadius();
-//     var newR = oldR + 100;
-//     this.setRadius(newR);
-//     //取消事件传递
-//     L.DomEvent.stopPropagation(e);
-// }
-
 
 /*
  在circle对象事件绑定的问题上
