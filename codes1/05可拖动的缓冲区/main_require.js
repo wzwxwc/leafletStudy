@@ -2,13 +2,15 @@
  * Created by zcG460 on 2016/7/21.
  */
 require.config({
+    baseUrl: "/leafletStudy/",
     paths: {
-        leaflet: "../../deps/v0.7.7/leaflet-src",
-        BufferCircle: "./BufferCircle"
+        leaflet: "deps/v0.7.7/leaflet-src",
+        BufferCircle: "commonModules/BufferCircle/BufferCircle",
+        WKTDraw: "commonModules/WKTDraw"
     }
 });
 
-require(["BufferCircle", "leaflet"], function (BufferCircle) {
+require(["BufferCircle", "WKTDraw", "leaflet"], function (BufferCircle, WKTDraw) {
     var centerPoint = [51.45716240204102, 0.09209632873535156];
 
     mymap = L.map('divMap').setView(centerPoint, 13);
@@ -26,7 +28,11 @@ require(["BufferCircle", "leaflet"], function (BufferCircle) {
 
     var circleCenterLatLng = [51.505, -0.09]; //圆心
     var radius = 200;
-    new BufferCircle(mymap, circleCenterLatLng, radius);
+    var fnCallBack = function (circleCenter, circleRadius, wktCirclePolygon) {
+        var wktDraw = new WKTDraw(mymap);
+        wktDraw.drawWktPOLYGON(wktCirclePolygon);
+    }
+    new BufferCircle(mymap, circleCenterLatLng, radius, fnCallBack);
     // mymap.setView(centerPoint, 17);
     L.marker(centerPoint).addTo(mymap);
 

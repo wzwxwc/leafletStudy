@@ -50,8 +50,27 @@ define(["leaflet"], function () {
         return true;
     }
 
-    var temp = function (map, circleCenterLatLng, radius) {
-        var htmlTemplate = '<img style="width:20px;height: 20px;border:4px solid greenyellow" src="imgs/handle.jpeg" alt=""><input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
+
+    /**
+     * 得到一个circle的wkt polygon的字符串
+     * @param circle        要进行wkt化的圆
+     * @param sumCount      返回的polygon中包含的点个数
+     * @returns {string}    circle的wkt polygon的形式
+     */
+    function fnGetCircleWKT(circle, sumCount) {
+        var wktPolygon = "POLYGON((";
+        var increment = 360 / sumCount;
+        for (var i = 0; i < sumCount; i++) {
+            var newPointLatLng = fnGetDestinationLatLng(circle.getLatLng(), increment * i, circle.getRadius());
+            wktPolygon += newPointLatLng.lng + " " + newPointLatLng.lat + ","
+        }
+        wktPolygon = wktPolygon.substring(0, wktPolygon.length - 1);
+        wktPolygon += "))";
+        return wktPolygon;
+    }
+
+    var temp = function (map, circleCenterLatLng, radius, fnCallback) {
+        var htmlTemplate = '<img style="width:20px;height: 20px;" src="imgs/handle.png" alt=""><input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
         var disicon = L.divIcon({
             html: htmlTemplate
         });
@@ -81,6 +100,9 @@ define(["leaflet"], function () {
         });
         //为什么没有mouseup事件？不过下述事件也不错
         markerHandle.on("dragend", function () {
+            if (fnCallback) {
+                fnCallback(circle.getLatLng(), circle.getRadius(), fnGetCircleWKT(circle, 100));
+            }
             map.fitBounds(circle);
         })
         //如果能够再缩放几个级别就好了

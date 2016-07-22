@@ -48,7 +48,7 @@ window.onload = function () {
     });
 
 
-    var htmlTemplate = '<img style="width:20px;height: 20px;border:4px solid greenyellow" src="imgs/handle.jpeg" alt=""> <input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
+    var htmlTemplate = '<img style="width:20px;height: 20px;border:4px solid greenyellow" src="../../commonModules/BufferCircle/imgs/handle.jpeg" alt=""> <input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
     //画圆
     //半径单位是米？a radius in meters
     var centrePoint = [51.5089561407416, -0.10419845581054688]; //圆心

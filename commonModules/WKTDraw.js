@@ -2,6 +2,11 @@
  * WKT字符串转换为地图上的点、线、面（support leaflet only）
  * Created by zcG460 on 2016/7/18.
  */
+require.config({
+    paths: {
+        WKTUtil: "./commonModules/WKTUtil"
+    }
+});
 define(["WKTUtil", "leaflet"], function (wktUtil) {
     var temp = function (map) {
         /**
