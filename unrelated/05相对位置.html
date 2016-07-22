@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05相对位置</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: green;
+        }
+    </style>
+    <script>
+        //下述这个js代码，无论是从放在哪里的js加载到这个html中
+        //img的src地址都是以这个html为参考的
+        var img = null;
+        window.onload = function () {
+            img = document.getElementsByTagName("img")[0];
+            img.setAttribute("src", "img/head.jpg");
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<img src="" alt="">
+</body>
+</html>
