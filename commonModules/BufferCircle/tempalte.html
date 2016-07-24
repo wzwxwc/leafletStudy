@@ -8,11 +8,25 @@
             background-color: darkseagreen;
         }
 
+        #container {
+            /*vertical-align: middle;*/
+        }
 
+        img {
+            /*只要img设置就可以了，难道对不齐的原因就在于img标签没对齐？*/
+            vertical-align: middle;
+        }
+
+        input {
+            /*vertical-align: middle;*/
+        }
     </style>
 </head>
 <body>
-<img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt="">
-<input type="text" style="width: 60px;" value="@@"/>
+<div id="container">
+    <input type="text" style="width: 60px;" value="@@"/>
+    <img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt="">
+
+</div>
 </body>
 </html>

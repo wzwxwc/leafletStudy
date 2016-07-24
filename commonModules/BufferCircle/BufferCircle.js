@@ -69,11 +69,14 @@ define(["leaflet"], function () {
     }
 
     var temp = function (map, circleCenterLatLng, radius, fnCallback) {
-        var htmlTemplate = '<img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt=""><input type="text" style="width: 160px;" value="@@"/>';
+        //DivIcon似乎支持css样式外移，试着来解决
+        var htmlTemplate = '<img style="width:20px;height:20px;vertical-align: middle" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt=""><input type="text" style="width: 160px;" value="@@"/>';
         var inputDom = null;
         var handleIcon = L.divIcon({
-            html: htmlTemplate
-            // iconSize: [297, 12]
+            html: htmlTemplate,
+            iconSize: [300, 0],
+            iconAnchor: [10, 0]
+            // className: "leaflet-div-icon_user"
         });
 
         //在使用之前，要不要对centerPoint和radius进行校验？
@@ -114,7 +117,11 @@ define(["leaflet"], function () {
                     } else {
                         alert("半径应该设置一个大于0的数。")
                     }
+                    this.select();
                 }
+            }
+            inputDom.ondblclick = function () {
+                this.focus();
             }
         });
         markerHandle.on("drag", function () {
@@ -134,8 +141,10 @@ define(["leaflet"], function () {
         markerHandle.on("dragend", function () {
             fnDraggedHandler();
         });
+
+        //暂时不支持这样的方式来触发
         markerHandle.on("dblclick", function (e) {
-            inputDom.focus();
+            // inputDom.focus();
         });
 
         markerHandle.addTo(map);
