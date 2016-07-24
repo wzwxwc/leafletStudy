@@ -50,7 +50,6 @@ define(["leaflet"], function () {
         return true;
     }
 
-
     /**
      * 得到一个circle的wkt polygon的字符串
      * @param circle        要进行wkt化的圆
@@ -70,9 +69,11 @@ define(["leaflet"], function () {
     }
 
     var temp = function (map, circleCenterLatLng, radius, fnCallback) {
-        var htmlTemplate = '<img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt=""><input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
+        var htmlTemplate = '<img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt=""><input type="text" style="width: 160px;" value="@@"/>';
+        var inputDom = null;
         var handleIcon = L.divIcon({
             html: htmlTemplate
+            // iconSize: [297, 12]
         });
 
         //在使用之前，要不要对centerPoint和radius进行校验？
@@ -83,18 +84,49 @@ define(["leaflet"], function () {
         var circle = L.circle(circleCenterLatLng, radius).addTo(map);
 
         var latLngHandle = fnGetDestinationLatLng(L.latLng(circleCenterLatLng[0], circleCenterLatLng[1]), 90, radius);
-        var newHtml = htmlTemplate.replace("@@", radius);
+        var newHtml = htmlTemplate.replace("@@", radius + "米");
         handleIcon.options.html = newHtml;
         var markerHandle = L.marker(latLngHandle, {
             icon: handleIcon,
             draggable: true
-        }).addTo(map);
+        });
+        //添加add事件还会返回markerHandle本身吗？
+        //回答：是的，所以可以考虑用链式编程
+        markerHandle.on("add", function (e) {
+            var domMarkerHandle = this._icon;
+
+            inputDom = domMarkerHandle.childNodes[1];
+            inputDom.onfocus = function () {
+                //去掉“米”字
+                this.value = this.value.substring(0, this.value.length - 1);
+                this.select();
+            };
+            inputDom.onblur = function () {
+                //加上“米”字
+                this.value = this.value + "米";
+            };
+            inputDom.onkeydown = function (e) {
+                if (e.keyCode == 13) {
+                    var inputNum = Number(inputDom.value);
+                    if (inputNum > 0) {
+                        fnDraggedHandler(parseFloat(inputDom.value));
+                        // this.blur();
+                    } else {
+                        alert("半径应该设置一个大于0的数。")
+                    }
+                }
+            }
+        });
         markerHandle.on("drag", function () {
             // debugger
             var distance = this.getLatLng().distanceTo(circleCenterLatLng);
-            var newHtml = htmlTemplate.replace("@@", distance);
-            handleIcon.options.html = newHtml;
-            markerHandle.setIcon(handleIcon);
+            inputDom.value = distance + "米";
+            //下述这2个都不导致一个问题：即那个距离数字不发生变化
+            // var newHtml = htmlTemplate.replace("@@", distance + "米");
+            // markerHandle.options.icon.options.html = newHtml;
+            // markerHandle.options.icon.options.html = newHtml;
+            //如果执行下句，重新赋值了一个新的icon，那么之前input text设置的值就不存在了
+            // markerHandle.setIcon(handleIcon);
             circle.setRadius(distance);
             // circle.update();
         });
@@ -102,6 +134,12 @@ define(["leaflet"], function () {
         markerHandle.on("dragend", function () {
             fnDraggedHandler();
         });
+        markerHandle.on("dblclick", function (e) {
+            inputDom.focus();
+        });
+
+        markerHandle.addTo(map);
+        map.fitBounds(circle);
 
         function fnDraggedHandler(newCircleRadius) {
             if (newCircleRadius) {
@@ -115,28 +153,6 @@ define(["leaflet"], function () {
             }
             map.fitBounds(circle);
         }
-
-        markerHandle.on("dblclick", function (e) {
-            // debugger
-            var domMarkerHandle = e.originalEvent.currentTarget;
-            var inputDom = domMarkerHandle.childNodes[1];
-            inputDom.focus();
-            inputDom.select();
-            inputDom.onkeydown = function (e) {
-                if (e.keyCode == 13) {
-                    var inputNum = Number(inputDom.value);
-                    if (inputNum > 0) {
-                        fnDraggedHandler(parseFloat(inputDom.value));
-                        // this.blur();
-                    } else {
-                        alert("半径应该设置一个大于0的数。")
-                    }
-                }
-            }
-        });
-        //如果能够再缩放几个级别就好了
-        map.fitBounds(circle);
-        // map.zoomOut(1);
 
         // circle.on('dblclick', fnCircleDbclickHandler);
         /**
