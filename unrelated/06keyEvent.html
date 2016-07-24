@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>key事件</title>
+    <script>
+        window.onload = function () {
+            var text = document.getElementById("text");
+            text.onkeydown = function () {
+                console.log("onkeydown");
+            };
+            text.onkeyup = function () {
+                console.log("onkeyup");
+            };
+            text.onkeypress = function () {
+                console.log("onkeypress");
+            };
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="text"/>
+</body>
+</html>
+<!--
+正常的输入框里点击一个按钮
+onkeydown
+onkeypress
+onkeyup
+
+长按一个按钮
+onkeydown
+onkeypress
+onkeydown
+onkeypress。。。。
+放开的时候
+onkeyup
+
+
+
+怎么就这么一个简单的html文件，在chrome中也无法定位到具体的文件呢?
+-->

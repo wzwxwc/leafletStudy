@@ -29,8 +29,8 @@ require(["BufferCircle", "WKTDraw", "leaflet"], function (BufferCircle, WKTDraw)
     var circleCenterLatLng = [51.505, -0.09]; //圆心
     var radius = 200;
     var fnCallBack = function (circleCenter, circleRadius, wktCirclePolygon) {
-        var wktDraw = new WKTDraw(mymap);
-        wktDraw.drawWktPOLYGON(wktCirclePolygon);
+        // var wktDraw = new WKTDraw(mymap);
+        // wktDraw.drawWktPOLYGON(wktCirclePolygon);
     }
     new BufferCircle(mymap, circleCenterLatLng, radius, fnCallBack);
     // mymap.setView(centerPoint, 17);

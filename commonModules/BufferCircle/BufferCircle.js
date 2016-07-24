@@ -70,8 +70,8 @@ define(["leaflet"], function () {
     }
 
     var temp = function (map, circleCenterLatLng, radius, fnCallback) {
-        var htmlTemplate = '<img style="width:20px;height: 20px;" src="imgs/handle.png" alt=""><input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
-        var disicon = L.divIcon({
+        var htmlTemplate = '<img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt=""><input type="text" style="width: 60px;" value="@@"/><label for="">米</label>';
+        var handleIcon = L.divIcon({
             html: htmlTemplate
         });
 
@@ -84,27 +84,56 @@ define(["leaflet"], function () {
 
         var latLngHandle = fnGetDestinationLatLng(L.latLng(circleCenterLatLng[0], circleCenterLatLng[1]), 90, radius);
         var newHtml = htmlTemplate.replace("@@", radius);
-        disicon.options.html = newHtml;
+        handleIcon.options.html = newHtml;
         var markerHandle = L.marker(latLngHandle, {
-            icon: disicon,
+            icon: handleIcon,
             draggable: true
         }).addTo(map);
         markerHandle.on("drag", function () {
             // debugger
             var distance = this.getLatLng().distanceTo(circleCenterLatLng);
             var newHtml = htmlTemplate.replace("@@", distance);
-            disicon.options.html = newHtml;
-            markerHandle.setIcon(disicon);
+            handleIcon.options.html = newHtml;
+            markerHandle.setIcon(handleIcon);
             circle.setRadius(distance);
             // circle.update();
         });
         //为什么没有mouseup事件？不过下述事件也不错
         markerHandle.on("dragend", function () {
+            fnDraggedHandler();
+        });
+
+        function fnDraggedHandler(newCircleRadius) {
+            if (newCircleRadius) {
+                var latLngCircleCenter = circle.getLatLng();
+                var latLngMarkerHandlePosition = fnGetDestinationLatLng(latLngCircleCenter, 90, newCircleRadius);
+                markerHandle.setLatLng(latLngMarkerHandlePosition);
+                circle.setRadius(newCircleRadius);
+            }
             if (fnCallback) {
                 fnCallback(circle.getLatLng(), circle.getRadius(), fnGetCircleWKT(circle, 100));
             }
             map.fitBounds(circle);
-        })
+        }
+
+        markerHandle.on("dblclick", function (e) {
+            // debugger
+            var domMarkerHandle = e.originalEvent.currentTarget;
+            var inputDom = domMarkerHandle.childNodes[1];
+            inputDom.focus();
+            inputDom.select();
+            inputDom.onkeydown = function (e) {
+                if (e.keyCode == 13) {
+                    var inputNum = Number(inputDom.value);
+                    if (inputNum > 0) {
+                        fnDraggedHandler(parseFloat(inputDom.value));
+                        // this.blur();
+                    } else {
+                        alert("半径应该设置一个大于0的数。")
+                    }
+                }
+            }
+        });
         //如果能够再缩放几个级别就好了
         map.fitBounds(circle);
         // map.zoomOut(1);
@@ -122,13 +151,13 @@ define(["leaflet"], function () {
             }
             // debugger
             var latLngCircleCenter = this.getLatLng();
-            var offset = this.getRadius();
-            var latLngOffset = fnGetDestinationLatLng(latLngCircleCenter, 90, offset);
+            var radius = this.getRadius();
+            var latLngMarkerHandlePosition = fnGetDestinationLatLng(latLngCircleCenter, 90, radius);
             //最好是设置为圆心往右偏半径的距离
-            markerHandle.setLatLng(latLngOffset);
-            var newHtml = htmlTemplate.replace("@@", offset);
-            disicon.options.html = newHtml;
-            markerHandle.setIcon(disicon);
+            markerHandle.setLatLng(latLngMarkerHandlePosition);
+            var newHtml = htmlTemplate.replace("@@", radius);
+            handleIcon.options.html = newHtml;
+            markerHandle.setIcon(handleIcon);
             markerHandle.update();
             markerHandle.addTo(map);
             this._user_handle = true;
