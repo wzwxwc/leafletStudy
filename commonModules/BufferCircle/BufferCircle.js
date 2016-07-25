@@ -74,7 +74,7 @@ define(["leaflet"], function () {
         var inputDom = null;
         var handleIcon = L.divIcon({
             html: htmlTemplate,
-            iconSize: [300, 0],
+            iconSize: [0, 0],
             iconAnchor: [10, 0]
             // className: "leaflet-div-icon_user"
         });
