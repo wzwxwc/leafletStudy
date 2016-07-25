@@ -84,7 +84,9 @@ define(["leaflet"], function () {
         if (!fnCheckArgumentsValidation(map, circleCenterLatLng, radius)) {
             return;
         }
-        var circle = L.circle(circleCenterLatLng, radius).addTo(map);
+        var circle = L.circle(circleCenterLatLng, radius, {
+            weight: 2
+        }).addTo(map);
 
         var latLngHandle = fnGetDestinationLatLng(L.latLng(circleCenterLatLng[0], circleCenterLatLng[1]), 90, radius);
         var newHtml = htmlTemplate.replace("@@", radius + "米");
@@ -162,6 +164,12 @@ define(["leaflet"], function () {
             }
             map.fitBounds(circle);
         }
+
+        //格式化距离字符串
+        function fnFormatDistance(numDistance) {
+            return numDistance;
+        }
+
 
         // circle.on('dblclick', fnCircleDbclickHandler);
         /**
