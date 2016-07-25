@@ -21,10 +21,21 @@
             /*vertical-align: middle;*/
         }
     </style>
+    <script>
+        var input = null;
+        window.onload = function () {
+            input = document.getElementById("text");
+            input.tag = 123;
+            input.tagRealValue = 456;
+            input.onkeyup = function () {
+                this.style.width = (this.value.length + 1) * 8 + "px";
+            }
+        }
+    </script>
 </head>
 <body>
 <div id="container">
-    <input type="text" style="width: 60px;" value="@@"/>
+    <input id="text" type="text" style="width: 60px;" value="@@"/>
     <img style="width:20px;height: 20px;" src="/leafletStudy/commonModules/BufferCircle/imgs/handle.png" alt="">
 
 </div>

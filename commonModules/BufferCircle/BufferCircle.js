@@ -84,7 +84,7 @@ define(["leaflet"], function () {
         if (!fnCheckArgumentsValidation(map, circleCenterLatLng, radius)) {
             return;
         }
-        var circle = L.circle(circleCenterLatLng, radius, {
+        var circle = L.circle(circlesssCenterLatLng, radius, {
             weight: 2
         }).addTo(map);
 
