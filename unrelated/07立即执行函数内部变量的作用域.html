@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07立即执行函数内部变量的作用域</title>
+    <script>
+        (function (args) {
+            var test = "test in";
+            console.log(args);
+        }("abc"))
+        console.log('是否能够显示“立即执行函数”内部声明的变量？')
+        //函数就是一个作用域，这个作用域是封闭的！
+        console.log(test);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

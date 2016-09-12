@@ -25,7 +25,7 @@
         return this;
     };
 
-    window.L = L;
+    // window.L = L;
 
 
     /*
