@@ -34,23 +34,45 @@
       color: 'blue',
       weight: 2
     }
-  }, new L.Format.GeoJSON({crs: L.CRS.EPSG4326}))
-    .addTo(map)
+  }, new L.Format.GeoJSON({crs: L.CRS.EPSG4326}));
+  boundaries.addTo(map)
     .once('load', function () {
-      map.fitBounds(boundaries);
+//      map.fitBounds(boundaries);
     });
 
-  var roads = new L.WFS({
-    url: 'http://demo.opengeo.org/geoserver/ows',
-    typeNS: 'topp',
-    typeName: 'tasmania_roads',
-    crs: L.CRS.EPSG4326,
-    geometryField: 'the_geom',
-    style: {
-      color: 'black',
-      weight: 1
-    }
-  }).addTo(map);
+  /*var roads = new L.WFS({
+   url: 'http://demo.opengeo.org/geoserver/ows',
+   typeNS: 'topp',
+   typeName: 'tasmania_roads',
+   crs: L.CRS.EPSG4326,
+   geometryField: 'the_geom',
+   style: {
+   color: 'black',
+   weight: 1
+   }
+   }).addTo(map);*/
+
+
+  /*var zc = new L.WFS({
+   url: "http://172.24.254.188/service/GovEMap/wfs",
+   typeNS: 'topp',
+   typeName: 'L416',
+   crs: L.CRS.EPSG4326,
+   geometryField: 'the_geom',
+   style: {
+   color: 'black',
+   weight: 1
+   },
+   params: {
+   request: "Geosearch",
+   service: "WFS",
+   version: "1.0.0",
+   recbox: "437442.469,257025.703,582446.812,414679.125",
+   searchType: "recsearch",
+   MAPSERVICE: "BJRMSNEW"
+   }
+   });
+   zc.addTo(map);*/
 
   var cities = new L.WFS({
     url: 'http://demo.opengeo.org/geoserver/ows',
@@ -58,7 +80,8 @@
     typeName: 'tasmania_cities',
     crs: L.CRS.EPSG4326,
     geometryField: 'the_geom'
-  }).addTo(map);
+  });
+  cities.addTo(map);
 
 
 </script>

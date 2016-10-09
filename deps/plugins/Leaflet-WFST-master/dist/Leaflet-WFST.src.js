@@ -129,7 +129,7 @@ L.Util.request = function (options) {
 
   var url = options.url + L.Util.getParamString(options.params, options.url);
 
-  xhr.open(options.method, url, options.async);
+  xhr.open(options.method, url, options.async,"bjtfsjyj","bjtfsjyj123!@#");
   for (var header in options.headers) {
     xhr.setRequestHeader(header, options.headers[header]);
   }
