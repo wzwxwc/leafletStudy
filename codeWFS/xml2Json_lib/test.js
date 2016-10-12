@@ -4,11 +4,11 @@
 window.onload = function () {
     $.ajax({
         type: "GET",
-        url: "data/reservoir.xml",
+        url: "data/line.xml",
         dataType: "xml",
         success: function (xmlData) {
             var strJsonFromXml=xml2json(xmlData,"");
-            var jsonDataArray=fnCreateJsonDataArray(strJsonFromXml,'L3566');
+            var jsonDataArray=fnCreateJsonDataArray(strJsonFromXml,'L3548');
             console.log(jsonDataArray);
         }
     });
@@ -31,9 +31,14 @@ function fnCreateJsonDataArray(strJsonFromXml,layerName) {
             }
         }
         //如果使用find会好点
-        var strLatLng=oneObject["gml:multiPointProperty"]["gml:MultiPoint"]["gml:pointMember"]["gml:Point"]["gml:coordinates"];
-        oneObjectWanted.latitude=strLatLng.split(' ')[1];
-        oneObjectWanted.longitude=strLatLng.split(' ')[0];
+        var strLatLng=oneObject["gml:envelope"];
+        var arrCoor=strLatLng.split(',');
+        var xMin=parseFloat(arrCoor[0]);
+        var yMin=parseFloat(arrCoor[1]);
+        var xMax=parseFloat(arrCoor[2]);
+        var yMax=parseFloat(arrCoor[3]);
+        oneObjectWanted.latitude=(xMin+xMax)/2;
+        oneObjectWanted.longitude=(yMin+yMax)/2;
         result.push(oneObjectWanted);
     }
     console.log(result);
