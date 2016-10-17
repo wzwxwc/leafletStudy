@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8/>
+    <title>02静态瓦片服务</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="../deps/v0.7.3/dist/leaflet.css"/>
+    <script src="../deps/v0.7.3/dist/leaflet-src.js"></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="esri-leaflet-src.js"></script>
+
+    <!-- Include Proj4JS via rawgit.com in production you'd be better off hosting these libraries yourself -->
+    <script src="https://rawgit.com/proj4js/proj4js/2.3.12/dist/proj4-src.js"></script>
+    <script src="https://rawgit.com/kartena/Proj4Leaflet/1.0.0-beta.1/src/proj4leaflet.js"></script>
+
+    <!-- Load shapeMarkers from CDN -->
+    <script src="https://cdn.jsdelivr.net/leaflet.shapemarkers/1.0.4/leaflet-shape-markers.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+
+    var crs = new L.Proj.CRS('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs', {
+        origin: [-400.0, 399.9999999999998],
+        resolutions: [
+            0.00237946100583028,
+            0.00118973050291514,
+            5.9486525145757E-4,
+            2.97432625728785E-4,
+            1.5228550437313792E-4
+        ]
+    });
+
+    var map = L.map('map', {
+        crs: crs
+    }).setView([0, 0], 1);
+
+    //下述这个很重要，不能少，少了地图就显示不出来
+    map.fitBounds([
+        //下述2个数组，不区分前后顺序
+        [35.923428, 117.539642],
+        [37.288587, 118.515226]
+    ]);
+
+    //上述设置的bounds和打开下述url看到的Extent不一样
+    //而且一点都不相关
+    L.esri.tiledMapLayer({
+        url: 'http://localhost:6080/arcgis/rest/services/BeiJingYuJing/baseMapTiled/MapServer'
+    }).addTo(map);
+
+</script>
+
+</body>
+</html>
+<!--
+稍后把这个改成web 墨卡托的投影方式
+-->

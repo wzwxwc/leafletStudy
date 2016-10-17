@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset=utf-8/>
+    <title>Non-mercator projection</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+
+    <!-- Load Leaflet from CDN-->
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>-->
+    <!--<script src="https://unpkg.com/leaflet@1.0.0/dist/leaflet-src.js"></script>-->
+    <link rel="stylesheet" href="../deps/v0.7.3/dist/leaflet.css">
+    <script src="../deps/v0.7.3/dist/leaflet-src.js"></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <!--<script src="https://unpkg.com/esri-leaflet@2.0.3"></script>-->
+    <script src="esri-leaflet-src.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Include Proj4JS via rawgit.com
+in production you'd be better off hosting these libraries yourself -->
+<script src="https://rawgit.com/proj4js/proj4js/2.3.12/dist/proj4-src.js"></script>
+<script src="https://rawgit.com/kartena/Proj4Leaflet/1.0.0-beta.1/src/proj4leaflet.js"></script>
+
+<div id="map"></div>
+
+<script>
+    /* create new Proj4Leaflet CRS:
+     1. Proj4 and WKT definitions can be found at sites like http://epsg.io, http://spatialreference.org/ or by using gdalsrsinfo http://www.gdal.org/gdalsrsinfo.html
+     2. Appropriate values to supply to the resolution and origin constructor options can be found in the ArcGIS Server RESTful tile server endpoint (ex: http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Terrain/MapServer)
+     3. The numeric code within the first parameter (ex: `26912`) will be used to project the dynamic map layer on the fly
+     */
+    var crs = new L.Proj.CRS('EPSG:54009', '+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs', {
+        origin: [-19844104.7157449, 29766157.3486128],
+        resolutions: [
+            66145.9656252646,
+            33072.9828126323,
+            16933.3672000677,
+            8466.68360003387
+        ]
+    });
+
+    var map = L.map('map', {
+        crs: crs
+    }).setView([40, -100], 3);
+
+    // The min/maxZoom values provided should match the actual cache thats been published. This information can be retrieved from the service endpoint directly.
+    L.esri.tiledMapLayer({
+        url: 'http://maverick.arcgis.com/ArcGIS/rest/services/World_Mollweide/MapServer',
+        // to do: overlay is misaligned at world scale, needs to figure out why.
+        maxZoom: 3,
+        minZoom: 3,
+        continuousWorld: true
+    }).addTo(map);
+
+    // Dynamic map layers are projected by ArcGIS Server itself before the image is retrieved
+    L.esri.dynamicMapLayer({
+        url: "http://nsdemo.esri.com/arcgis/rest/services/SampleWorldCities/MapServer",
+        layers: [1]
+    }).addTo(map);
+</script>
+
+</body>
+</html>

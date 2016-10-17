@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8/>
+    <title>02静态瓦片服务</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.0.0/dist/leaflet-src.js"></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@2.0.3"></script>
+
+    <!-- Include Proj4JS via rawgit.com in production you'd be better off hosting these libraries yourself -->
+    <script src="https://rawgit.com/proj4js/proj4js/2.3.12/dist/proj4-src.js"></script>
+    <script src="https://rawgit.com/kartena/Proj4Leaflet/1.0.0-beta.1/src/proj4leaflet.js"></script>
+
+    <!-- Load shapeMarkers from CDN -->
+    <script src="https://cdn.jsdelivr.net/leaflet.shapemarkers/1.0.4/leaflet-shape-markers.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+
+    //下述resolutions中的E-4是否合适？
+    var crs = new L.Proj.CRS('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs', {
+        origin: [-400.0, 399.9999999999998],
+        resolutions: [
+            0.00237946100583028,
+            0.00118973050291514,
+            0.00059486525145757,
+            0.000297432625728785,
+            0.00015228550437313792
+        ]
+    });
+
+    var map = L.map('map', {
+        crs: crs
+    }).setView([40, -100], 3);
+    //.setView([36, 118], 4);
+
+    // The min/maxZoom values provided should match the actual cache thats been published. This information can be retrieved from the service endpoint directly.
+    L.esri.tiledMapLayer({
+        url: 'http://localhost:6080/arcgis/rest/services/BeiJingYuJing/baseMapTiledWgs84/MapServer',
+        // to do: overlay is misaligned at world scale, needs to figure out why.
+        maxZoom: 1,
+        minZoom: 5,
+        continuousWorld: true
+    }).addTo(map);
+
+    //下述这个很重要，不能少，少了地图就显示不出来
+    /* map.fitBounds([
+     //下述2个数组，不区分前后顺序
+     [35.923428, 117.539642],
+     [37.288587, 118.515226]
+     ]);*/
+
+</script>
+
+</body>
+</html>
+<!--
+L.esri.tiledMapLayer不能“直接使用”一个“非墨卡托”的投影坐标系！
+L.esri.TiledMapLayer is using a non-mercator spatial reference. Support may be available through Proj4Leaflet http://esri.github.io/esri-leaflet/examples/non-mercator-projection.html
+-->
