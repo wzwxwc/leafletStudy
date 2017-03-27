@@ -1,0 +1,552 @@
+{
+  "time": "2016122223",
+  "status": "0",
+  "data": [
+    {
+      "sta_jingdu": 111.3,
+      "sta_exmaxwindd": 28.0,
+      "ta_n": "59265",
+      "sta_weidy": 23.48
+    },
+    {
+      "sta_jingdu": 108.28,
+      "sta_exmaxwindd": 309.0,
+      "ta_n": "59237",
+      "sta_weidy": 23.17
+    },
+    {
+      "sta_jingdu": 108.03,
+      "sta_exmaxwindd": 238.0,
+      "ta_n": "59023",
+      "sta_weidy": 24.7
+    },
+    {
+      "sta_jingdu": 111.07,
+      "sta_exmaxwindd": 40.0,
+      "ta_n": "57960",
+      "sta_weidy": 25.93
+    },
+    {
+      "sta_jingdu": 111.15,
+      "sta_exmaxwindd": 28.0,
+      "ta_n": "57964",
+      "sta_weidy": 25.5
+    },
+    {
+      "sta_jingdu": 109.6,
+      "sta_exmaxwindd": 14.0,
+      "ta_n": "57941",
+      "sta_weidy": 25.78
+    },
+    {
+      "sta_jingdu": 110.18,
+      "sta_exmaxwindd": 292.0,
+      "ta_n": "57954",
+      "sta_weidy": 25.23
+    },
+    {
+      "sta_jingdu": 110.0,
+      "sta_exmaxwindd": 28.0,
+      "ta_n": "57949",
+      "sta_weidy": 24.98
+    },
+    {
+      "sta_jingdu": 109.15,
+      "sta_exmaxwindd": 306.0,
+      "ta_n": "59242",
+      "sta_weidy": 23.7667
+    },
+    {
+      "sta_jingdu": 106.55,
+      "sta_exmaxwindd": 346.0,
+      "ta_n": "59012",
+      "sta_weidy": 24.78
+    },
+    {
+      "sta_jingdu": 107.03,
+      "sta_exmaxwindd": 221.0,
+      "ta_n": "59021",
+      "sta_weidy": 24.55
+    },
+    {
+      "sta_jingdu": 106.6,
+      "sta_exmaxwindd": 215.0,
+      "ta_n": "59211",
+      "sta_weidy": 23.9
+    },
+    {
+      "sta_jingdu": 108.62,
+      "sta_exmaxwindd": 332.0,
+      "ta_n": "59632",
+      "sta_weidy": 21.95
+    },
+    {
+      "sta_jingdu": 110.3,
+      "sta_exmaxwindd": 23.0,
+      "ta_n": "57957",
+      "sta_weidy": 25.32
+    },
+    {
+      "sta_jingdu": 111.23,
+      "sta_exmaxwindd": 272.0,
+      "ta_n": "59266",
+      "sta_weidy": 23.42
+    },
+    {
+      "sta_jingdu": 110.63,
+      "sta_exmaxwindd": 153.0,
+      "ta_n": "57859",
+      "sta_weidy": 26.03
+    },
+    {
+      "sta_jingdu": 110.0,
+      "sta_exmaxwindd": 264.0,
+      "ta_n": "57942",
+      "sta_weidy": 25.8
+    },
+    {
+      "sta_jingdu": 110.92,
+      "sta_exmaxwindd": 0.0,
+      "ta_n": "59256",
+      "sta_weidy": 23.37
+    },
+    {
+      "sta_jingdu": 107.92,
+      "sta_exmaxwindd": 128.0,
+      "ta_n": "59426",
+      "sta_weidy": 22.62
+    },
+    {
+      "sta_jingdu": 111.0,
+      "sta_exmaxwindd": 354.0,
+      "ta_n": "59454",
+      "sta_weidy": 22.95
+    },
+    {
+      "sta_jingdu": 107.2,
+      "sta_exmaxwindd": 43.0,
+      "ta_n": "59421",
+      "sta_weidy": 22.83
+    },
+    {
+      "sta_jingdu": 109.25,
+      "sta_exmaxwindd": 0.0,
+      "ta_n": "59441",
+      "sta_weidy": 22.7
+    },
+    {
+      "sta_jingdu": 110.53,
+      "sta_exmaxwindd": 17.0,
+      "ta_n": "59452",
+      "sta_weidy": 22.83
+    },
+    {
+      "sta_jingdu": 109.75,
+      "sta_exmaxwindd": 34.0,
+      "ta_n": "59045",
+      "sta_weidy": 24.48
+    },
+    {
+      "sta_jingdu": 106.42,
+      "sta_exmaxwindd": 351.0,
+      "ta_n": "59218",
+      "sta_weidy": 23.13
+    },
+    {
+      "sta_jingdu": 107.55,
+      "sta_exmaxwindd": 323.0,
+      "ta_n": "59022",
+      "sta_weidy": 24.98
+    },
+    {
+      "sta_jingdu": 107.7,
+      "sta_exmaxwindd": 332.0,
+      "ta_n": "59229",
+      "sta_weidy": 23.17
+    },
+    {
+      "sta_jingdu": 110.4,
+      "sta_exmaxwindd": 113.0,
+      "ta_n": "59055",
+      "sta_weidy": 24.5
+    },
+    {
+      "sta_jingdu": 109.1,
+      "sta_exmaxwindd": 6.0,
+      "ta_n": "59647",
+      "sta_weidy": 21.03
+    },
+    {
+      "sta_jingdu": 108.17,
+      "sta_exmaxwindd": 82.0,
+      "ta_n": "59230",
+      "sta_weidy": 23.72
+    },
+    {
+      "sta_jingdu": 109.67,
+      "sta_exmaxwindd": 309.0,
+      "ta_n": "59246",
+      "sta_weidy": 23.6
+    },
+    {
+      "sta_jingdu": 107.18,
+      "sta_exmaxwindd": 99.0,
+      "ta_n": "57927",
+      "sta_weidy": 24.97
+    },
+    {
+      "sta_jingdu": 107.35,
+      "sta_exmaxwindd": 152.0,
+      "ta_n": "59425",
+      "sta_weidy": 22.4
+    },
+    {
+      "sta_jingdu": 107.58,
+      "sta_exmaxwindd": 334.0,
+      "ta_n": "59228",
+      "sta_weidy": 23.32
+    },
+    {
+      "sta_jingdu": 110.8,
+      "sta_exmaxwindd": 6.0,
+      "ta_n": "59059",
+      "sta_weidy": 24.18
+    },
+    {
+      "sta_jingdu": 106.92,
+      "sta_exmaxwindd": 219.0,
+      "ta_n": "59213",
+      "sta_weidy": 23.73
+    },
+    {
+      "sta_jingdu": 106.75,
+      "sta_exmaxwindd": 99.0,
+      "ta_n": "59419",
+      "sta_weidy": 22.1
+    },
+    {
+      "sta_jingdu": 110.08,
+      "sta_exmaxwindd": 0.0,
+      "ta_n": "59254",
+      "sta_weidy": 23.4
+    },
+    {
+      "sta_jingdu": 109.33,
+      "sta_exmaxwindd": 340.0,
+      "ta_n": "59047",
+      "sta_weidy": 24.25
+    },
+    {
+      "sta_jingdu": 110.5,
+      "sta_exmaxwindd": 17.0,
+      "ta_n": "59051",
+      "sta_weidy": 24.77
+    },
+    {
+      "sta_jingdu": 107.07,
+      "sta_exmaxwindd": 82.0,
+      "ta_n": "59427",
+      "sta_weidy": 22.12
+    },
+    {
+      "sta_jingdu": 108.62,
+      "sta_exmaxwindd": 315.0,
+      "ta_n": "59235",
+      "sta_weidy": 23.43
+    },
+    {
+      "sta_jingdu": 109.68,
+      "sta_exmaxwindd": 270.0,
+      "ta_n": "59241",
+      "sta_weidy": 23.97
+    },
+    {
+      "sta_jingdu": 110.38,
+      "sta_exmaxwindd": 25.0,
+      "ta_n": "59255",
+      "sta_weidy": 23.55
+    },
+    {
+      "sta_jingdu": 107.12,
+      "sta_exmaxwindd": 247.0,
+      "ta_n": "59224",
+      "sta_weidy": 23.6
+    },
+    {
+      "sta_jingdu": 108.1,
+      "sta_exmaxwindd": 340.0,
+      "ta_n": "59037",
+      "sta_weidy": 23.93
+    },
+    {
+      "sta_jingdu": 109.25,
+      "sta_exmaxwindd": 335.0,
+      "ta_n": "57948",
+      "sta_weidy": 25.08
+    },
+    {
+      "sta_jingdu": 110.67,
+      "sta_exmaxwindd": 3.0,
+      "ta_n": "57955",
+      "sta_weidy": 25.62
+    },
+    {
+      "sta_jingdu": 108.52,
+      "sta_exmaxwindd": 315.0,
+      "ta_n": "59431",
+      "sta_weidy": 22.8
+    },
+    {
+      "sta_jingdu": 109.98,
+      "sta_exmaxwindd": 51.0,
+      "ta_n": "59449",
+      "sta_weidy": 22.3
+    },
+    {
+      "sta_jingdu": 105.83,
+      "sta_exmaxwindd": 269.0,
+      "ta_n": "59209",
+      "sta_weidy": 23.42
+    },
+    {
+      "sta_jingdu": 107.13,
+      "sta_exmaxwindd": 23.0,
+      "ta_n": "59227",
+      "sta_weidy": 23.12
+    },
+    {
+      "sta_jingdu": 110.52,
+      "sta_exmaxwindd": 343.0,
+      "ta_n": "59058",
+      "sta_weidy": 24.2
+    },
+    {
+      "sta_jingdu": 111.27,
+      "sta_exmaxwindd": 335.0,
+      "ta_n": "59061",
+      "sta_weidy": 24.82
+    },
+    {
+      "sta_jingdu": 108.67,
+      "sta_exmaxwindd": 93.0,
+      "ta_n": "59034",
+      "sta_weidy": 24.48
+    },
+    {
+      "sta_jingdu": 108.02,
+      "sta_exmaxwindd": 82.0,
+      "ta_n": "59429",
+      "sta_weidy": 22.18
+    },
+    {
+      "sta_jingdu": 109.3,
+      "sta_exmaxwindd": 79.0,
+      "ta_n": "59446",
+      "sta_weidy": 22.42
+    },
+    {
+      "sta_jingdu": 108.27,
+      "sta_exmaxwindd": 116.0,
+      "ta_n": "59031",
+      "sta_weidy": 24.82
+    },
+    {
+      "sta_jingdu": 109.38,
+      "sta_exmaxwindd": 9.0,
+      "ta_n": "59044",
+      "sta_weidy": 24.47
+    },
+    {
+      "sta_jingdu": 108.9,
+      "sta_exmaxwindd": 79.0,
+      "ta_n": "59033",
+      "sta_weidy": 24.78
+    },
+    {
+      "sta_jingdu": 106.85,
+      "sta_exmaxwindd": 122.0,
+      "ta_n": "59417",
+      "sta_weidy": 22.33
+    },
+    {
+      "sta_jingdu": 107.25,
+      "sta_exmaxwindd": 207.0,
+      "ta_n": "59027",
+      "sta_weidy": 24.13
+    },
+    {
+      "sta_jingdu": 109.25,
+      "sta_exmaxwindd": 281.0,
+      "ta_n": "59041",
+      "sta_weidy": 24.65
+    },
+    {
+      "sta_jingdu": 106.63,
+      "sta_exmaxwindd": 98.0,
+      "ta_n": "59215",
+      "sta_weidy": 23.33
+    },
+    {
+      "sta_jingdu": 109.4,
+      "sta_exmaxwindd": 99.0,
+      "ta_n": "57947",
+      "sta_weidy": 25.22
+    },
+    {
+      "sta_jingdu": 109.55,
+      "sta_exmaxwindd": 317.0,
+      "ta_n": "59448",
+      "sta_weidy": 22.27
+    },
+    {
+      "sta_jingdu": 105.33,
+      "sta_exmaxwindd": 225.0,
+      "ta_n": "59001",
+      "sta_weidy": 24.78
+    },
+    {
+      "sta_jingdu": 109.62,
+      "sta_exmaxwindd": 332.0,
+      "ta_n": "59249",
+      "sta_weidy": 23.12
+    },
+    {
+      "sta_jingdu": 106.57,
+      "sta_exmaxwindd": 276.0,
+      "ta_n": "59015",
+      "sta_weidy": 24.35
+    },
+    {
+      "sta_jingdu": 107.38,
+      "sta_exmaxwindd": 181.0,
+      "ta_n": "59025",
+      "sta_weidy": 24.53
+    },
+    {
+      "sta_jingdu": 108.35,
+      "sta_exmaxwindd": 349.0,
+      "ta_n": "59635",
+      "sta_weidy": 21.62
+    },
+    {
+      "sta_jingdu": 110.67,
+      "sta_exmaxwindd": 198.0,
+      "ta_n": "59053",
+      "sta_weidy": 24.62
+    },
+    {
+      "sta_jingdu": 110.82,
+      "sta_exmaxwindd": 26.0,
+      "ta_n": "59052",
+      "sta_weidy": 24.83
+    },
+    {
+      "sta_jingdu": 110.35,
+      "sta_exmaxwindd": 42.0,
+      "ta_n": "59451",
+      "sta_weidy": 22.7
+    },
+    {
+      "sta_jingdu": 110.12,
+      "sta_exmaxwindd": 292.0,
+      "ta_n": "59453",
+      "sta_weidy": 22.67
+    },
+    {
+      "sta_jingdu": 108.35,
+      "sta_exmaxwindd": 14.0,
+      "ta_n": "59631",
+      "sta_weidy": 21.78
+    },
+    {
+      "sta_jingdu": 108.65,
+      "sta_exmaxwindd": 26.0,
+      "ta_n": "59038",
+      "sta_weidy": 24.07
+    },
+    {
+      "sta_jingdu": 110.18,
+      "sta_exmaxwindd": 156.0,
+      "ta_n": "59057",
+      "sta_weidy": 24.13
+    },
+    {
+      "sta_jingdu": 109.13,
+      "sta_exmaxwindd": 23.0,
+      "ta_n": "59644",
+      "sta_weidy": 21.45
+    },
+    {
+      "sta_jingdu": 106.27,
+      "sta_exmaxwindd": 317.0,
+      "ta_n": "59017",
+      "sta_weidy": 24.27
+    },
+    {
+      "sta_jingdu": 110.32,
+      "sta_exmaxwindd": 321.0,
+      "ta_n": "57958",
+      "sta_weidy": 25.08
+    },
+    {
+      "sta_jingdu": 110.27,
+      "sta_exmaxwindd": 34.0,
+      "ta_n": "59457",
+      "sta_weidy": 22.32
+    },
+    {
+      "sta_jingdu": 109.4,
+      "sta_exmaxwindd": 133.0,
+      "ta_n": "59046",
+      "sta_weidy": 24.35
+    },
+    {
+      "sta_jingdu": 108.8,
+      "sta_exmaxwindd": 357.0,
+      "ta_n": "59238",
+      "sta_weidy": 23.22
+    },
+    {
+      "sta_jingdu": 110.32,
+      "sta_exmaxwindd": 201.0,
+      "ta_n": "57956",
+      "sta_weidy": 25.42
+    },
+    {
+      "sta_jingdu": 107.95,
+      "sta_exmaxwindd": 357.0,
+      "ta_n": "59626",
+      "sta_weidy": 21.57
+    },
+    {
+      "sta_jingdu": 105.1,
+      "sta_exmaxwindd": 74.0,
+      "ta_n": "59004",
+      "sta_weidy": 24.5
+    },
+    {
+      "sta_jingdu": 109.18,
+      "sta_exmaxwindd": 346.0,
+      "ta_n": "59640",
+      "sta_weidy": 21.67
+    },
+    {
+      "sta_jingdu": 111.3178,
+      "sta_exmaxwindd": 20.0,
+      "ta_n": "59064",
+      "sta_weidy": 24.5417
+    },
+    {
+      "sta_jingdu": 111.5,
+      "sta_exmaxwindd": 303.0,
+      "ta_n": "59065",
+      "sta_weidy": 24.42
+    },
+    {
+      "sta_jingdu": 108.48,
+      "sta_exmaxwindd": 65.0,
+      "ta_n": "59435",
+      "sta_weidy": 22.77
+    }
+  ]
+}
