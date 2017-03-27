@@ -18,7 +18,7 @@ $.ajax({
         var dataArr = data.data;
         for (var i = 0; i < dataArr.length; i++) {
             var oneData = dataArr[i];
-
+            fnShowRotatedIcon(oneData.sta_exmaxwindd, [oneData.sta_weidy, oneData.sta_jingdu]);
         }
     },
     error: function (err) {
@@ -26,14 +26,14 @@ $.ajax({
     }
 });
 
-function fnShowRotatedIcon(degree) {
+function fnShowRotatedIcon(degree, latLngArr) {
     //var degree = "190";
     var divIconHtml = "<div style='transform: rotate(" + degree + "deg); -moz-transform: rotate(" + degree +
         "deg);-webkit-transform: rotate(" + degree + "deg);-o-transform: rotate(" + degree +
         "deg);-ms-transform: rotate(" + degree + "deg);'>F</div>";
     var myIcon = L.divIcon({html: divIconHtml, className: 'cloud-direction-icon'});
 // you can set .my-div-icon styles in CSS
-    L.marker([51.5, -0.09], {icon: myIcon}).addTo(mymap);
+    L.marker(latLngArr, {icon: myIcon}).addTo(mymap);
 }
 
 
