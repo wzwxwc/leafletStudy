@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02tooltip</title>
+    <style>
+        #mapid {
+            /*可以省略width，但是不能省略height*/
+            /*width: 200px;*/
+            height: 200px;
+            border: 2px solid green;
+        }
+    </style>
+    <link rel="stylesheet" href="../deps/v1.2.0/leaflet.css">
+    <script src="../deps/v1.2.0/leaflet-src.js"></script>
+    <script src="../deps/jsts1.4.0/jsts.js"></script>
+    <script src="../00commonLibs/zcMaps.js"></script>
+    <script>
+        window.onload = function () {
+            var map = zcMap.fnInitTdt("mapid");
+            L.marker([51.505, -0.09]).bindTooltip("my tool tip text").addTo(map);
+        };
+    </script>
+</head>
+<body>
+<div id="mapid"></div>
+</body>
+</html>
