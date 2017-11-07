@@ -37,8 +37,34 @@ function drawPoint(map) {
 //改进
 //1、双击结束，并且可以重新画
 function drawLine(map) {
+
+}
+
+function ToolPoint() {
+
+}
+
+function ToolLine() {
     var arrLatLng = [];
     var polyline = L.polyline(arrLatLng, {color: 'blue'}).addTo(map);
+
+    /**
+     * 开始画线
+     */
+    this.start = function () {
+        map.on("click", mapClick);
+        //map.on()方法返回的就是一个map对象！
+        map.on("dblclick", mapDblClick);
+    };
+
+    /**
+     * 结束画线
+     */
+    this.end = function () {
+        map.off("click", mapClick);
+        //map.on()方法返回的就是一个map对象！
+        map.off("dblclick", mapDblClick);
+    }
 
     function mapClick(e) {
         arrLatLng.push(e.latlng);
@@ -51,21 +77,12 @@ function drawLine(map) {
         map.off("dblclick", mapDblClick);
     }
 
-    map.on("click", mapClick);
-    //map.on()方法返回的就是一个map对象！
-    map.on("dblclick", mapDblClick);
+
     console.log("画线");
 }
 
-//下述方法错误，并且会导致地图的放大缩小事件失效！
-function drawLineBad(map) {
-    var arrLatLng = [];
-    map.off();
-    map.on("click", function (e) {
-        arrLatLng.push(e.latlng);
-        L.polyline(arrLatLng, {color: 'red'}).addTo(map);
-    });
-    console.log("画线");
+function ToolPolygon() {
+
 }
 
 function drawPolygon(map) {
