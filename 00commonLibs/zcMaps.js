@@ -30,7 +30,7 @@ zcMap.fnInitTdt = function (argStrMapDivId) {
 
 zcMap.fnInitMapBox = function (argStrMapDivId) {
     var mapboxAccessToken = "sk.eyJ1Ijoid3p3eHdjIiwiYSI6ImNqNW5qZ2xwejNkejEzM29kZHlxOHgxZGgifQ.CWcInSCc1zYgDA9sCfUSRw";
-    var map = L.map('mapid').setView([37.8, -96], 4);
+    var map = L.map(argStrMapDivId).setView([37.8, -96], 4);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
         id: 'mapbox.light'
