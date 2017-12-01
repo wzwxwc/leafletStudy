@@ -39,15 +39,14 @@ mapUtil.fnInitMapBox = function (argStrMapDivId) {
 };
 
 mapUtil.fnInitWMSofLocal = function (argStrMapDivId) {
-    var map = L.map(argStrMapDivId).setView([51.505, -0.09]);
+    var map = L.map(argStrMapDivId).setView([51.505, -0.09], 4);
     L.tileLayer.wms("http://localhost:8080/geoserver/zctest/wms", {
         version: "1.1.0",
         layers: 'zctest:ne_110m_coastline',
         format: 'image/png',
         transparent: true,
         crs: L.CRS.EPSG4326,
-        zoom: 12,
-        attribution: "Weather data © 2012 IEM Nexrad"
+        bounds: [[-85.60903777459774, -180.0], [83.64513, 180.00000044181039]]
     }).addTo(map);
     return map;
 };
