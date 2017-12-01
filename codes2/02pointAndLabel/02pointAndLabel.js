@@ -3,7 +3,7 @@
  * Created by zcRescuer on 2017/4/18.
  */
 window.onload = function () {
-    var map = zcMap.fnInitBaseMap("mapid");
+    var map = mapUtil.fnInitBaseMap("mapid");
     fnShowPointAndLabel(map);
 };
 

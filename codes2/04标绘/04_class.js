@@ -4,7 +4,7 @@
  */
 var strMapToolType = "";
 window.onload = function () {
-    var map = zcMap.fnInitTdt("mapid");
+    var map = mapUtil.fnInitTdt("mapid");
     bindEvents(map);
 };
 

@@ -2,8 +2,8 @@
  * Map相关的封装
  * Created by zcRescuer on 2017/4/18.
  */
-var zcMap = {};
-zcMap.fnInitBaseMap = function (argStrMapDivId) {
+var mapUtil = {};
+mapUtil.fnInitBaseMap = function (argStrMapDivId) {
     // set its view to our chosen geographical coordinates and a zoom level:
     var mymap = L.map(argStrMapDivId).setView([39.889718875996685, -243.5579681396484], 10);
     //故意把map对象暴露出来，之后在console中更容易的操作
@@ -20,7 +20,7 @@ zcMap.fnInitBaseMap = function (argStrMapDivId) {
     return mymap;
 };
 
-zcMap.fnInitTdt = function (argStrMapDivId) {
+mapUtil.fnInitTdt = function (argStrMapDivId) {
     var mymap = L.map(argStrMapDivId);
     L.tileLayer("http://t{s}.tianditu.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
         subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
@@ -28,7 +28,7 @@ zcMap.fnInitTdt = function (argStrMapDivId) {
     return mymap;
 };
 
-zcMap.fnInitMapBox = function (argStrMapDivId) {
+mapUtil.fnInitMapBox = function (argStrMapDivId) {
     var mapboxAccessToken = "sk.eyJ1Ijoid3p3eHdjIiwiYSI6ImNqNW5qZ2xwejNkejEzM29kZHlxOHgxZGgifQ.CWcInSCc1zYgDA9sCfUSRw";
     var map = L.map(argStrMapDivId).setView([37.8, -96], 4);
 
@@ -36,4 +36,29 @@ zcMap.fnInitMapBox = function (argStrMapDivId) {
         id: 'mapbox.light'
     }).addTo(map);
     return map;
-}
+};
+
+mapUtil.fnInitWMSofLocal = function (argStrMapDivId) {
+    var map = L.map(argStrMapDivId).setView([51.505, -0.09]);
+    L.tileLayer.wms("http://localhost:8080/geoserver/zctest/wms", {
+        version: "1.1.0",
+        layers: 'zctest:ne_110m_coastline',
+        format: 'image/png',
+        transparent: true,
+        crs: L.CRS.EPSG4326,
+        zoom: 12,
+        attribution: "Weather data © 2012 IEM Nexrad"
+    }).addTo(map);
+    return map;
+};
+
+mapUtil.fnInitWMS2 = function (argStrMapDivId) {
+    var map = L.map(argStrMapDivId);
+    L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+        layers: 'nexrad-n0r-900913',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Weather data © 2012 IEM Nexrad"
+    }).addTo(map);
+    return map
+};

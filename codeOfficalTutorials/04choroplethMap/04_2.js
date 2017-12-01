@@ -1,4 +1,4 @@
-var map = zcMap.fnInitMapBox("mapid");
+var map = mapUtil.fnInitMapBox("mapid");
 L.geoJson(statesData, {
     style: style
 }).addTo(map);

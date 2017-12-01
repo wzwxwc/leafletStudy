@@ -1,5 +1,5 @@
 window.onload = function () {
-    var mymap=zcMap.fnInitTdt("mapid");
+    var mymap=mapUtil.fnInitTdt("mapid");
     mymap.setView([51.505, -0.09], 13);
 
     L.marker([51.5, -0.09]).addTo(mymap)

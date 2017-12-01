@@ -1,6 +1,6 @@
 var map;
 window.onload = function () {
-    map = zcMap.fnInitTdt("mapid");
+    map = mapUtil.fnInitTdt("mapid");
 };
 
 

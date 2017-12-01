@@ -1,6 +1,6 @@
 var map = "";
 window.onload = function () {
-    map = zcMap.fnInitTdt("mapid");
+    map = mapUtil.fnInitTdt("mapid");
     map.panTo([42.87596410238256, -100.89843750000001]);
     map.setZoom(4);
 

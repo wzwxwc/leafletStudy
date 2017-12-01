@@ -17,7 +17,7 @@
     <script src="../00commonLibs/zcMaps.js"></script>
     <script>
         window.onload = function () {
-            var map = zcMap.fnInitTdt("mapid");
+            var map = mapUtil.fnInitTdt("mapid");
             L.marker([51.505, -0.09]).bindTooltip("my tool tip text").addTo(map);
         };
     </script>
