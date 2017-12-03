@@ -38,7 +38,7 @@ mapUtil.fnInitMapBox = function (argStrMapDivId) {
     return map;
 };
 
-mapUtil.fnInitWMSofLocal = function (argStrMapDivId) {
+mapUtil.fnInitWMSofLocalRescuer = function (argStrMapDivId) {
     var map = L.map(argStrMapDivId).setView([51.505, -0.09], 4);
     L.tileLayer.wms("http://localhost:8080/geoserver/zctest/wms", {
         version: "1.1.0",
@@ -47,6 +47,19 @@ mapUtil.fnInitWMSofLocal = function (argStrMapDivId) {
         transparent: true,
         crs: L.CRS.EPSG4326,
         bounds: [[-85.60903777459774, -180.0], [83.64513, 180.00000044181039]]
+    }).addTo(map);
+    return map;
+};
+
+mapUtil.fnInitWMSofLocalG460 = function (argStrMapDivId) {
+    var map = L.map(argStrMapDivId).setView([39.027718840211605, 106.69921875000001], 4);
+    L.tileLayer.wms("http://localhost:8080/geoserver/zctest/wms", {
+        version: "1.3.0",
+        layers: 'zctest:cou_pro,zctest:rai_4m',
+        format: 'image/png',
+        transparent: true,
+        crs: L.CRS.EPSG4326,
+        bounds: [[6.318641185760498, 73.44696044921875], [53.557926177978516, 135.08583068847656]]
     }).addTo(map);
     return map;
 };
