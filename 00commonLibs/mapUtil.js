@@ -28,6 +28,14 @@ mapUtil.fnInitTdt = function (argStrMapDivId) {
     return mymap;
 };
 
+mapUtil.fnInitTdtWithDrawControl = function (argStrMapDivId) {
+    var mymap = L.map(argStrMapDivId, {drawControl: true});
+    L.tileLayer("http://t{s}.tianditu.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={z}&TileRow={y}&TileCol={x}&style=default&format=tiles", {
+        subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"]
+    }).addTo(mymap);
+    return mymap;
+};
+
 mapUtil.fnInitMapBox = function (argStrMapDivId) {
     var mapboxAccessToken = "sk.eyJ1Ijoid3p3eHdjIiwiYSI6ImNqNW5qZ2xwejNkejEzM29kZHlxOHgxZGgifQ.CWcInSCc1zYgDA9sCfUSRw";
     var map = L.map(argStrMapDivId).setView([37.8, -96], 4);
