@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03clickPopup</title>
+    <link rel="stylesheet" href="../deps/v1.2.0/leaflet.css">
+    <script src="../deps/v1.2.0/leaflet-src.js"></script>
+    <script src="../00commonLibs/mapUtil.js"></script>
+    <script>
+        var map = mapUtil.fnInitTdt("divMap");
+        map.setView([51.505, -0.09], 13);
+        map.on("mousedown", function (e) {
+            L.popup()
+        })
+    </script>
+</head>
+<body>
+<div id="divMap"></div>
+</body>
+</html>

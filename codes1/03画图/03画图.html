@@ -11,19 +11,15 @@
             border: 2px solid gold;
         }
     </style>
+    <link rel="stylesheet" href="../../deps/plugins/Leaflet.draw-0.4.13/leaflet.draw-src.css">
     <script src="../../deps/v0.7.7/leaflet-src.js"></script>
+    <script src="../../00commonLibs/mapUtil.js"></script>
+    <script src="../../deps/plugins/Leaflet.draw-0.4.13/leaflet.draw-src.js"></script>
     <script>
         var mymap = null;
         window.onload = function () {
-            mymap = L.map('divMap').setView([51.505, -0.09], 13);
-
-            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
-                maxZoom: 18,
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-                id: 'mapbox.streets'
-            }).addTo(mymap);
+            mymap = mapUtil.fnInitTdt("divMap");
+            mymap.setView([51.505, -0.09], 13);
 
             var arrLatLng = [[51.50938350161162, -0.1922607421875], [51.51216124955517, -0.15895843505859375], [51.50329323076107, -0.1517486572265625]];
 
@@ -41,13 +37,16 @@
             //画面
             //是否应该收尾衔接？
             arrLatLng.push([51.50938350161162, -0.1922607421875]);
-            L.polygon(arrLatLng).addTo(mymap);
+            var polygon = L.polygon(arrLatLng);
+            polygon.editing.enable();
+            polygon.addTo(mymap);
 
             document.getElementById('zoom').onclick = function () {
                 mymap.fitBounds(arrLatLng);
             }
         }
     </script>
+
 </head>
 <body>
 <div id="divMap"></div>
