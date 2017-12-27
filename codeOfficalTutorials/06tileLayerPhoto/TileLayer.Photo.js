@@ -26,8 +26,8 @@ L.TileLayer.Photo = L.TileLayer.extend({
         return Util.template(this._url, Util.extend(data, this.options));
     },
     getTileUrl: function (coords) {
-        var i = Math.ceil(Math.random() * 8);
-        return "./img/b" + i + ".jpg";
+        var i = Math.ceil(Math.random() * 12);
+        return "./img/t" + i + ".jpg";
     }
 });
 

@@ -8,6 +8,8 @@ var map = L.map("divMap", {
     preferCanvas: true
 });
 map.setView([0, 0], 1);
+
+
 /*
 初始一个map，只需要上述2步就可以了
 1、map对象的div
