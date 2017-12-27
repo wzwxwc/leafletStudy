@@ -34,4 +34,3 @@ L.TileLayer.Photo = L.TileLayer.extend({
 L.tileLayer.photo = function () {
     return new L.TileLayer.Photo();
 };
-
